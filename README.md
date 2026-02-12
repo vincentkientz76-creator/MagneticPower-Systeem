@@ -1,139 +1,125 @@
 # MagneticPower Systeem – Canonieke Repository
 
-Welkom in het officiële MagneticPower Systeem.  
-Deze repository bevat **alle regels, documenten, pipelines, UX‑structuren, content‑governance en technische implementaties** die samen het fundament vormen van MagneticPower.nl.
+Welkom in het officiële MagneticPower Systeem.
+
+Deze repository bevat alle regels, documentatie, pipelines, UX-structuren, content-governance en technische implementaties die samen het fundament vormen van MagneticPower.nl.
 
 Dit systeem is ontworpen voor:
 
-- **DGA (Vincent Kientz)** – strategische controle, inzicht en besluitvorming  
-- **AI‑agents** – reproduceerbare uitvoering zonder interpretatie  
-- **Developers & specialisten** – schaalbare implementatie  
+- **DGA (Vincent Kientz)** – strategische controle en besluitvorming
+- **AI-agents** – reproduceerbare uitvoering
+- **Developers & specialisten** – schaalbare implementatie
 - **Toekomstige teamleden** – overdraagbaarheid en duidelijkheid
 
 ---
 
 ## 🎯 Doel van deze repository
 
-Deze repo is de **single source of truth** voor:
+Deze repository is de **Single Source of Truth** voor:
 
-- Product intelligence (R70–R79)  
-- Pricing & import (R90–R99)  
-- Content & collectie‑governance (R150–R160)  
-- UX, SEO & theme‑architectuur (R170–R180)  
-- Documentatie, changelogs en DGA‑uitleg  
-- Data, exports en marktinformatie  
-- Tools, scripts en automatisering  
+- Product Intelligence (R70–R79)
+- Pricing & Shopify Import (R90–R99)
+- Content & Collectie-Governance (R150–R160)
+- UX, SEO & Theme-Architectuur (R170–R180)
+- Governance & audit-structuren
+- Tools, scripts en automatisering
+- DGA-documentatie en changelogs
 
-Alles wat MagneticPower doet, is hier herleidbaar.
+Alle systeemlogica is herleidbaar, reproduceerbaar en auditbaar.
 
 ---
 
-## 🧠 Architectuur (hoog niveau)
+## 🧠 Architectuurlagen
 
-Het systeem bestaat uit vier lagen:
+Het MagneticPower Systeem bestaat uit vier kernlagen:
 
-### 1. **Product Intelligence (R70–R79)**
-Van BigBuy/Eprolo → extractie → classificatie → magnetische detectie → propositie‑fit → specialist‑agents.
+### 1. Product Intelligence (R70–R79)
+Brondata → extractie → classificatie → magnetische detectie → propositie-fit → specialist-agents.
 
-### 2. **Prijs & Import (R90–R99)**
+### 2. Pricing & Import (R90–R99)
 Marktdata → R92 prijsstrategie → R190 governance → R91 Shopify import.
 
-### 3. **Content & Collecties (R150–R160)**
-SEO, collectie‑architectuur, audit, metafields, UX‑beslisblokken.
+### 3. Content & Collectie Governance (R150–R160)
+SEO-structuur, collectie-architectuur, metafields, auditlogica.
 
-### 4. **UX, SEO & Theme (R170–R180)**
-Homepage‑routing, collectie‑wireframes, PDP‑structuur, theme‑implementatie.
+### 4. UX, SEO & Theme Architectuur (R170–R180)
+Homepage-routing, collectie-wireframes, PDP-structuur en implementatie (R173).
 
----
-
-## 📁 Mappenoverzicht
-
-### `/Data`
-Brondata, exports, marktdata en leveranciersbestanden.
-
-### `/Documentation`
-DGA‑boek, projectoverzicht, changelogs.
-
-### `/MagneticPower Systeem`
-Hoofdstructuur van alle regels, pipelines, UX, content en tools.
-
-### `/R70-79_Product_Intelligence`
-Alle productselectie‑regels.
-
-### `/R90-99_Shopify_Import`
-Prijsstrategie, import en governance.
-
-### `/R150-160_Content_Governance`
-Content, collecties, audit en metafields.
-
-### `/R170-180_UX_Theme`
-UX, SEO, theme en implementatie.
-
-### `/Tests`
-Unit, integration en audit tests.
-
-### `/Tools`
-Scripts, automatisering en pipeline‑tools.
+Elke laag is modulair en onafhankelijk valideerbaar.
 
 ---
 
-## 🧩 Hoe dit systeem werkt
+## 📁 Hoofdstructuur
 
-1. **Data in → R70–R79**  
-2. **Marktdata → R73**  
-3. **Prijsstrategie → R92**  
-4. **Governance → R190**  
-5. **Import → R91**  
-6. **Content → R150**  
-7. **UX/SEO → R170–R180**  
-8. **Shopify rendert (R173)**
-
-Elke stap is reproduceerbaar en auditbaar.
-
----
-
-## 🧭 Voor de DGA
-
-Dit systeem geeft:
-
-- Volledige controle  
-- Geen verrassingen  
-- Geen afhankelijkheid van mensen  
-- Schaalbaarheid  
-- Rust en overzicht  
-
-Het DGA‑boek staat in:
-
-`/Documentation/DGA_Boek/README.md`
+- `/00_Documentatie` – Systeem- en DGA-uitleg
+- `/01_Regels` – Overkoepelende regelstructuur
+- `/02_Pipeline` – Logische procesketen
+- `/03_Shopify` – Platformimplementatie
+- `/04_Content` – Content-structuur
+- `/05_UX` – UX-logica
+- `/06_SEO` – SEO-architectuur
+- `/07_Management` – Strategische lagen
+- `/08_System_Governance` – Besluitvorming & auditmechanismen
+- `/Data` – Brondata (niet versioned bulk)
+- `/R70-79_Product_Intelligence`
+- `/R90-99_Shopify_Import`
+- `/R150-160_Content_Governance`
+- `/R170-180_UX_Theme`
+- `/Tests`
+- `/Tools`
 
 ---
 
-## 🧱 Voor AI‑agents
+## 🔄 Systeemstroom (vereenvoudigd)
 
-Agents gebruiken deze repo als:
+1. Data-invoer  
+2. R70–R79 selectie en classificatie  
+3. Marktdata & prijsstrategie (R92)  
+4. Governance-validatie (R190)  
+5. Shopify-import (R91)  
+6. Contentverrijking (R150)  
+7. UX/SEO implementatie (R170–R180)  
+8. Shopify rendering (R173)
 
-- bron van waarheid  
-- regelsysteem  
-- beslisstructuur  
-- audit‑kader  
+Elke stap is reproduceerbaar.
 
-Elke regel is modulair en onafhankelijk.
+---
+
+## 🧭 Governance-principe
+
+Wijzigingen binnen het systeem verlopen gecontroleerd.
+
+Geen ad-hoc wijzigingen.
+Geen informele beslissingen.
+Geen verborgen logica.
+
+Elke wijziging is:
+- verklaarbaar
+- herleidbaar
+- documenteerbaar
+- valideerbaar
+
+---
+
+## 🧠 Voor AI-agents
+
+Agents gebruiken deze repository als:
+
+- bron van waarheid
+- regelkader
+- beslisstructuur
+- auditmechanisme
+
+Elke regel is modulair en onafhankelijk toepasbaar.
 
 ---
 
 ## 📌 Status
 
-Deze repository is **canoniek**.  
-Alle wijzigingen verlopen via:
+Dit is de canonieke repository van MagneticPower.
 
-1. DGA‑besluit  
-2. R170‑regie  
-3. R152/R190 audit  
-4. Implementatie via R173
+Deze repository vormt de structurele basis van het MagneticPower Operating System (MP-OS).
 
 ---
 
-## © MagneticPower
-
-MagneticPower – Slimme magnetische oplossingen voor dagelijks gebruik.
-
+© MagneticPower – Slimme magnetische oplossingen voor dagelijks gebruik.

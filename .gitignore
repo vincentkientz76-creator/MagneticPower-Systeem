@@ -21,3 +21,6 @@ Data/**
 *.zip
 *.log
 
+# Automation runtime
+Tools/Automation/logs/**
+Tools/Automation/tmp/**
