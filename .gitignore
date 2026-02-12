@@ -1,0 +1,23 @@
+# Mac
+.DS_Store
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Secrets
+.env
+
+# Data exports / bulk data (niet versioneren)
+Data/**
+!Data/README.md
+!Data/**/README.md
+!Data/**/.gitkeep
+
+# Common exports/logs anywhere
+*.csv
+*.xlsx
+*.zip
+*.log
+
