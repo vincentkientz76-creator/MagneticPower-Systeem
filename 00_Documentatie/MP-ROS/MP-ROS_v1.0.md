@@ -1,7 +1,7 @@
 # MagneticPower Retail Operating System (MP-ROS) v1.0
 
-Versie: 0.4  
-Status: In ontwikkeling  
+Versie: 1.0 (Freeze)  
+Status: Canoniek vastgesteld  
 Datum: 13-02-2026  
 Bron: Repo is technisch leidend. Dit document is bestuurlijk leidend.
 
@@ -63,6 +63,10 @@ R70-A — Bron Extractie
 ↓  
 R70-B — Product Function Classification  
 ↓  
+R71 — Magnetic Capability  
+↓  
+R72 — Shopify Reality Anchor  
+↓  
 R73 — MagneticPower Proposition Fit  
 ↓  
 R74 — Specialist Intelligence (indien van toepassing)  
@@ -70,6 +74,8 @@ R74 — Specialist Intelligence (indien van toepassing)
 R91 — Shopify Structuuranker  
 ↓  
 R92 — Prijs- en Margebepaling  
+↓  
+R97 — Validatie & Recovery  
 ↓  
 R150 — Content Governance  
 ↓  
@@ -936,4 +942,47 @@ Het systeem blijft stabiel wanneer:
 
 Operations zijn uitvoerend; governance blijft leidend.
 
+---
+
+# 8. Canonieke Vaststelling (Freeze v1.0)
+
+## 8.1 Scope van deze freeze
+
+Deze freeze verklaart **de volledige inhoud van dit document (hoofdstuk 1 t/m 7)** als canoniek vastgesteld.
+
+Dit betekent:
+
+- Dit document is bestuurlijk leidend.
+- De repository is technisch leidend.
+- Afwijkingen zijn ongeldig zonder expliciete wijziging via change control.
+
+---
+
+## 8.2 Change Control (verplicht vanaf v1.0)
+
+Elke wijziging aan regels, ketenstappen, selectiecriteria, pricing, importstructuur, collectierouting, templates of UX-canon vereist:
+
+1. Een repository commit (code/regels/templates)  
+2. Een changelog entry in `/Documentation/Changelogs/`  
+3. Een MP-ROS versie-upgrade (v1.1, v1.2, …) met korte wijzigingssamenvatting in dit hoofdstuk
+
+Stille wijzigingen (zonder changelog) zijn ongeldig.
+
+---
+
+## 8.3 System-of-Record
+
+Leidende waarheden:
+
+1. MP-ROS (dit document) = bestuurlijke waarheid  
+2. `/01_Regels/` = regellogica (inhoudelijke beslisregels)  
+3. `/02_Pipeline/` + `/Tools/Automation/` = uitvoering (runners/outputs/logs)  
+4. R152 (registry) = collectie routing/template waarheid  
+5. R190 = livegang autoriteit (GO/NO-GO)
+
+---
+
+## 8.4 Versiegeschiedenis
+
+- v1.0 (Freeze) — Canonieke vaststelling van MP-ROS hoofdstuk 1 t/m 7.
 
