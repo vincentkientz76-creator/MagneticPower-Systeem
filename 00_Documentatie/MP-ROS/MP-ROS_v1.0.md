@@ -1,6 +1,6 @@
 # MagneticPower Retail Operating System (MP-ROS) v1.0
 
-Versie: 0.2  
+Versie: 0.4  
 Status: In ontwikkeling  
 Datum: 13-02-2026  
 Bron: Repo is technisch leidend. Dit document is bestuurlijk leidend.
@@ -231,3 +231,273 @@ De architectuur is correct ingericht als:
 - elke livegang aantoonbaar door R190 “GO” is gegaan
 - wijzigingen traceerbaar zijn via changelogs
 
+---
+
+# 3. Product Intelligence Engine (R70–R74)
+
+## 3.1 Doel
+
+De Product Intelligence Engine bepaalt in een vaste volgorde:
+
+1. Wat het product functioneel is (R70-B)
+2. Of en hoe het magnetisch is (R71)
+3. Wat de Shopify-realiteit al bevat (R72)
+4. Of het past binnen MagneticPower (R73)
+5. Of specialistlogica vereist is (R74)
+
+De kernoutput is een verdedigbare selectie: technisch correct, proposition-fit en klaar voor structuur en pricing.
+
+---
+
+## 3.2 R70-A — Bron Extractie (geen interpretatie)
+
+R70-A leest supplierbestanden (ZIP/XML/CSV) zonder filtering of propositie-oordeel en normaliseert ruwe velden naar een standaard raw-format.
+
+Eigenschappen:
+
+- Geen magnetische selectie
+- Geen Shopify-logica
+- Geen “fit” oordeel
+- Wel encoding-sanitizer en veldnormalisatie
+
+Outputs:
+
+- R70A_RAW_PRODUCTS.csv
+- R70A_EXTRACT_LOG.csv
+
+---
+
+## 3.3 R70-B — Product Function Classifier (wat is het product)
+
+R70-B bepaalt uitsluitend de functionele productsoort.
+
+Belangrijk:
+
+- R70-B mag geen magnetisch oordeel vellen
+- R70-B mag geen MagneticPower-propositie toepassen
+- Onzekerheid leidt tot LOW confidence, niet tot gokken
+
+Output (voorbeeldvelden):
+
+- product_function_primary
+- product_function_secondary (optioneel)
+- function_confidence (LOW/MEDIUM/HIGH)
+- function_reason (korte uitlegbare reden)
+
+R70-B is leidend voor downstream beslissingen: fouten in “wat het product is” worden hier gecorrigeerd, niet later.
+
+---
+
+## 3.4 R71 — Magnetic Capability Detector (is/hoe magnetisch)
+
+R71 bepaalt of het product een functionele magnetische interactie heeft en hoe deze zich uit.
+
+Bronnen voor detectie:
+
+- Titel / beschrijving signalen (magnetisch/magneet/magnetic)
+- MagSafe / Qi2 signals
+- Neodymium / magnet* context (excl. magnetron)
+- Producttype-context uit R70-B (magnetisme moet functioneel passen)
+
+R71 is geen propositie-fit; R71 is een capability-detectie.
+
+---
+
+## 3.5 R72 — Shopify Reality Anchor (verankering)
+
+R72 verankert de selectie aan bestaande Shopify-realiteit:
+
+- bestaande handles / collecties / templates
+- bestaande categorieën en hubstructuur
+- bestaande mappingregels (allow/deny anchors)
+
+Doel: voorkomen dat pipeline-output “los” raakt van de echte winkel.
+
+---
+
+## 3.6 R73 — MagneticPower Proposition Fit (bindend)
+
+R73 is de bindende selectie-regel: het bepaalt of een product binnen MagneticPower als propositie past.
+
+Kernprincipes:
+
+- Magnetisch = expliciete, functionele magneet-interactie
+- Niet-magnetische producten worden uitgesloten
+- Marketing/kleurnaam “magnet” wordt uitgesloten
+
+Bindende hard exclusions:
+
+- Primary devices zijn altijd uitgesloten (bijv. smartphones)
+  - exclusion_reason: PRIMARY_DEVICE_NOT_MAGNETIC_FUNCTION
+- Audio devices zijn uitgesloten (headphones/earbuds/speakers)
+  - exclusion_reason: PRIMARY_DEVICE_NOT_MAGNETIC_FUNCTION
+- Storage devices zijn uitgesloten (HDD/SSD/USB drives)
+  - exclusion_reason: STORAGE_DEVICE_NOT_MAGNETIC_FUNCTION
+- Bags/wallets/pouches met magnetische sluiting zijn uitgesloten
+  - exclusion_reason: BAG_WITH_MAGNETIC_CLOSURE_NOT_MAGNETIC_FUNCTION
+
+Contextlabels (bindend):
+
+- r73_usage_context (charging | consumer_daily | business_daily)
+- r73_collection_candidate
+- r73_exclusion_reason
+
+Output van R73:
+
+- Alleen YES + MAYBE_STRONG gaan door
+- NO wordt uitgesloten met reden
+
+---
+
+## 3.7 R74 — Specialist Engine (Magnetische Powerbanks)
+
+R74 is een specialistlaag voor powerbanks:
+
+- Detecteert powerbank baseline (powerbank/portable charger/battery pack)
+- Combineert dit met magnetische signals (MagSafe/Qi2/magnetic)
+- Past hard exclusions toe voor niet-relevante domeinen
+- Verankert aan bestaande Shopify allowlist-ankers (R91/R72)
+
+Outputvelden (richtinggevend):
+
+- r73_is_powerbank_v2
+- r74_is_magnetic_powerbank
+- r74_detection_reason
+- r74_confidence
+- r91_anchor_match
+
+R74 draait na R73 en vóór verdere verrijking.
+
+---
+
+## 3.8 Minimale succescriteria (R70–R74)
+
+De Product Intelligence Engine is correct als:
+
+- R70-A nooit filtert op propositie
+- R70-B functioneel classificeert zonder magnetische claims
+- R71 capability detecteert zonder propositie-oordeel
+- R73 hard exclusions altijd prevaleren
+- R74 alleen categorie-specifieke diepte toevoegt
+- elke uitsluiting een expliciete, traceerbare reden heeft
+
+---
+
+# 4. Commerciële Engine (R91–R92–R97–R190)
+
+## 4.1 Doel
+
+De Commerciële Engine zet een geselecteerd product om naar importklare waarheid met expliciete commerciële controle.
+
+Zij borgt:
+
+- vaste importstructuur (R91)
+- reproduceerbare pricing- en marge-logica (R92)
+- validatie en herstel van inconsistenties (R97)
+- finale kwaliteitsbeslissing vóór livegang (R190)
+
+Output: een dataset die technisch correct is én commercieel verdedigbaar.
+
+---
+
+## 4.2 R91 — Shopify Structuuranker (importwaarheid)
+
+R91 definieert de waarheid voor import:
+
+- verplichte kolommen en datatypes
+- normalisatie van velden (titles, handles, vendors, tags)
+- encoding regels (ASCII-only waar vereist)
+- URL governance en consistentie
+- mapping naar Shopify velden en metafields
+
+R91 is leidend: downstream mag geen eigen kolommen “erbij verzinnen” buiten governance.
+
+Minimale R91-successcriteria:
+
+- elke kolom bestaat en is gevuld volgens regels
+- geen verboden tekens / encoding issues
+- consistente delimiter en quoting
+- deterministische handle- en URL-opbouw
+- verplichte metafields aanwezig waar governance dit vereist
+
+---
+
+## 4.3 R92 — Pricing & Margin Engine
+
+R92 bepaalt prijs en marge op basis van:
+
+- inkoopprijs
+- verzendkosten en fulfilmentkosten (waar van toepassing)
+- BTW/logistieke aannames (conform jouw governance)
+- gewenste margedoelen per categorie/segment
+- afrondingsregels (prijspsychologie / consistentie)
+
+R92 is output-gedreven: het levert concrete velden (bijv. cost, selling price, margin metrics) en motiveert afwijkingen.
+
+Minimale R92-successcriteria:
+
+- prijs is reproduceerbaar (zelfde inputs → zelfde prijs)
+- margeberekening is transparant en uitlegbaar
+- uitzonderingen worden gelogd (niet stil toegepast)
+- producten die marge niet halen worden gemarkeerd (NO-GO of review)
+
+---
+
+## 4.4 R97 — Validatie & Recovery
+
+R97 detecteert en herstelt fouten vóór import, waaronder:
+
+- ontbrekende verplichte velden
+- inconsistenties in titles/handles/vendors
+- encodingproblemen
+- dubbele of conflicterende identifiers
+- afwijkingen tussen productdata en Shopify-realiteit (in samenwerking met R72/R91)
+
+R97 is geen “cosmetische fix”; het is een kwaliteitslaag:
+
+- alles wat niet te herstellen is → expliciet gemarkeerd
+- herstelacties worden gelogd (auditbaar)
+- outputs worden gescheiden in GO/REVIEW/NO-GO categorieën
+
+Minimale R97-successcriteria:
+
+- elk defect wordt gedetecteerd of expliciet uitgesloten
+- herstel is reproduceerbaar en traceerbaar
+- geen stille wijzigingen zonder log
+
+---
+
+## 4.5 R190 — GO / NO-GO Gate (laatste autoriteit)
+
+R190 is de finale gate voor livegang.
+
+R190 kijkt minimaal naar:
+
+- R91 schema compliance (structuur/encoding/kolommen)
+- R92 marge/prijs compliance (business rules)
+- R97 validatie status (fouten en recovery)
+- Shopify-compatibiliteit (handles, templates, routing verankering)
+
+Output is een expliciet besluit per product:
+
+- GO → mag live
+- REVIEW → vereist menselijke check
+- NO-GO → uitgesloten met reden
+
+Minimale R190-successcriteria:
+
+- geen product gaat live zonder GO
+- elke NO-GO heeft een expliciete reden
+- gate is consistent (zelfde input → zelfde besluit)
+
+---
+
+## 4.6 Commerciële Engine: minimale KPI’s
+
+De keten is commercieel gezond als:
+
+- marge per categorie binnen targetband valt
+- pricing geen extreme outliers produceert zonder logging
+- importbestanden “clean” zijn (geen encoding/structuur issues)
+- GO-rate stijgt door betere upstream selectie (R70–R74)
+- REVIEW-rate beheersbaar blijft (geen bottleneck)
