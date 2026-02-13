@@ -642,5 +642,298 @@ De Content & UX Engine functioneert correct als:
 Content mag nooit selectie- of pricing-logica overrulen.
 
 ---
+# 6. Governance & Directielaag
+
+## 6.1 Doel
+
+De Governance & Directielaag borgt dat:
+
+- Het systeem bestuurbaar blijft
+- Beslissingen niet impliciet maar expliciet zijn
+- AI-automatisering gecontroleerd plaatsvindt
+- Regelwijzigingen traceerbaar zijn
+- De DGA eindverantwoordelijkheid behoudt
+
+Deze laag voorkomt drift, wildgroei en ongecontroleerde uitbreiding.
+
+---
+
+## 6.2 Canonieke hiërarchie
+
+Binnen MagneticPower geldt de volgende beslissingsvolgorde:
+
+1. Repository (technische implementatie)  
+2. MP-ROS (bestuurlijke waarheid)  
+3. Canonieke Regels (R70–R190)  
+4. Collection Registry (R152)  
+5. GO/NO-GO Gate (R190)  
+
+Er bestaan geen uitzonderingen buiten deze hiërarchie.
+
+---
+
+## 6.3 Regelbeheer (Change Control)
+
+Elke wijziging aan:
+
+- Een R-regel
+- De selectiecriteria (R73)
+- Pricinglogica (R92)
+- Importstructuur (R91)
+- UX-canon (R170+)
+- Hubstructuur (R151/152)
+
+Moet voldoen aan:
+
+1. Expliciete wijziging in repository  
+2. Logvermelding in Changelogs  
+3. Eventuele update in MP-ROS  
+4. Geen stille aanpassing in scripts  
+
+Wijzigingen zonder logging zijn ongeldig.
+
+---
+
+## 6.4 AI-rolafbakening
+
+AI mag:
+
+- Data classificeren binnen vastgestelde regels
+- Pricing berekenen volgens R92
+- Content structureren volgens R150
+- Validatie uitvoeren volgens R97
+- Rapportage genereren
+
+AI mag niet:
+
+- Regels wijzigen
+- Hard exclusions overrulen
+- Nieuwe categorieën creëren
+- Governance-structuur aanpassen
+- Livegangbeslissingen zelfstandig nemen zonder R190
+
+---
+
+## 6.5 Directiecontrolepunten
+
+De DGA controleert minimaal:
+
+- Margebandbreedte per categorie
+- GO/NO-GO ratio
+- Percentage MAYBE_STRONG (R73)
+- Review-rate uit R97
+- Aantal manual overrides (moet minimaal blijven)
+- Core Web Vitals status
+- Hubstructuur consistentie
+
+Indien afwijking structureel is → systeemwijziging vereist.
+
+---
+
+## 6.6 Escalatie-structuur
+
+Indien een product of regel twijfel veroorzaakt:
+
+1. Controleer R70-B classificatie
+2. Controleer R73 fit
+3. Controleer R91 schema
+4. Controleer R92 marge
+5. Toets aan MP-ROS kernprincipes
+
+Pas daarna mag escalatie plaatsvinden.
+
+Geen ad-hoc beslissingen buiten ketenlogica.
+
+---
+
+## 6.7 Minimale Governance-Successcriteria
+
+De Governance-laag functioneert correct als:
+
+- Geen dubbele canonieke documenten bestaan
+- Elke regel een vaste plek heeft
+- Elke wijziging traceerbaar is
+- Er geen stille uitzonderingen bestaan
+- Repo en MP-ROS synchroon blijven
+- Archief geen sturende rol heeft
+
+---
+
+## 6.8 Stabiliteitsprincipe
+
+MagneticPower groeit alleen door:
+
+- Nieuwe producten binnen bestaande structuur
+- Verbetering van regels
+- Optimalisatie van pricing
+- Versterking van UX
+- Verbetering van data-kwaliteit
+
+Niet door:
+
+- Verbreding zonder selectie
+- Verzwakking van exclusions
+- Toestaan van randgevallen buiten propositie
+
+---
+
+De Governance & Directielaag is het controlecentrum van het systeem.
+
+# 7. Operations & Risicobeheer
+
+## 7.1 Doel
+
+De Operations & Risicobeheer-laag borgt dat:
+
+- De winkel technisch stabiel draait
+- Klantverwachtingen worden waargemaakt
+- Financiële stromen correct worden verwerkt
+- Juridische en compliance-risico’s beheerst blijven
+- Performance en conversie actief worden bewaakt
+
+Deze laag vertaalt systeemlogica naar dagelijkse bedrijfsvoering.
+
+---
+
+## 7.2 Livegangcontrole (Pre-Launch Checklist)
+
+Voor elke structurele wijziging (nieuwe collectie, template, bulkimport, prijsupdate) geldt een minimale controle:
+
+- HTTPS actief, geen mixed content
+- Geen test- of dummycollecties zichtbaar
+- Collectie-routing conform R152
+- SEO-titels ≤ 70 tekens
+- Meta-descriptions ≤ 170 tekens
+- Encoding foutloos (geen rare tekens)
+- Trust-signalen zichtbaar vóór scroll
+- Mobiele weergave gecontroleerd (Android/Samsung S23)
+- Checkout test succesvol (incl. Shop Pay / Apple Pay / PayPal waar actief)
+
+Geen vink = geen livegang.
+
+---
+
+## 7.3 Checkout & Betalingsverwerking
+
+Minimale vereisten:
+
+- Frictionless checkout
+- Snelle betaalopties actief (Shop Pay / Apple Pay / PayPal waar mogelijk)
+- Geen overbodige velden
+- Orderbevestiging correct
+- BTW-berekening correct
+- Synchronisatie met boekhouding consistent
+
+Testscenario’s:
+
+1. Testorder lage prijs  
+2. Testorder hoge prijs  
+3. Test met kortingscode  
+4. Test retourverwerking  
+5. Test mislukte betaling  
+
+Elke test wordt minimaal 1× per structurele wijziging uitgevoerd.
+
+---
+
+## 7.4 Levering & Retour
+
+Verplicht zichtbaar vóór scroll:
+
+- Levertijd
+- Verzendkosten
+- Retourtermijn
+- Garantiebeleid
+- Contactmogelijkheid
+
+Risicobeheersing:
+
+- Geen onduidelijke levertijden
+- Geen verborgen kosten
+- Geen vage retourvoorwaarden
+- Klantcommunicatie consistent
+
+---
+
+## 7.5 Boekhouding & Financiële Controle
+
+Minimale controlepunten:
+
+- Betalingsproviders correct gekoppeld
+- BTW juist geboekt
+- Debiteurenrekeningen correct
+- Transacties consistent met Shopify-orders
+- Periodieke controle van marge vs. R92 output
+
+Financiële afwijking → escalatie naar Governance-laag.
+
+---
+
+## 7.6 Performance & Conversie Monitoring
+
+Wordt periodiek gecontroleerd op:
+
+- Core Web Vitals
+- Paginasnelheid mobiel
+- Add-to-cart ratio
+- Checkout completion rate
+- Bounce rate op hubs
+- Review-ratio uit R97
+
+Structurele daling → UX-audit verplicht.
+
+---
+
+## 7.7 Risicocategorieën
+
+### Technisch risico
+- Scriptfouten
+- Encodingproblemen
+- Importafwijkingen
+- Template-conflicten
+
+### Commercieel risico
+- Te lage marge
+- Verkeerde prijspositionering
+- Onjuiste categorie-indeling
+
+### Juridisch risico
+- Onvolledige productinformatie
+- Onjuiste contactgegevens
+- Onduidelijke voorwaarden
+
+### Operationeel risico
+- Niet-synchroniserende boekhouding
+- Ongeteste betaalflow
+- Ongeteste retourprocedure
+
+Alle risico’s vallen terug op R190 indien impact op livegang.
+
+---
+
+## 7.8 Minimale Operationele Succescriteria
+
+Operations functioneren correct als:
+
+- Geen structurele checkoutfouten
+- Geen massale R97 validatiefouten
+- Geen conflicten tussen collectie en template
+- Geen openstaande kritieke changelog-items
+- Financiële data sluit aan bij Shopify-werkelijkheid
+- Performance binnen acceptabele bandbreedte blijft
+
+---
+
+## 7.9 Continuïteitsprincipe
+
+Het systeem blijft stabiel wanneer:
+
+- Regels niet ad-hoc worden aangepast
+- Releases gecontroleerd plaatsvinden
+- Elke wijziging commit-gedreven is
+- Archief geen actieve rol krijgt
+- MP-ROS en repo synchroon blijven
+
+Operations zijn uitvoerend; governance blijft leidend.
 
 
