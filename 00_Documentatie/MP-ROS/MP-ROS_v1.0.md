@@ -501,3 +501,146 @@ De keten is commercieel gezond als:
 - importbestanden “clean” zijn (geen encoding/structuur issues)
 - GO-rate stijgt door betere upstream selectie (R70–R74)
 - REVIEW-rate beheersbaar blijft (geen bottleneck)
+---
+# 5. Content & UX Engine (R150–R152–R170+)
+
+## 5.1 Doel
+
+De Content & UX Engine borgt dat:
+
+- De winkel consistent en professioneel oogt
+- De structuur schaalbaar blijft
+- SEO correct wordt toegepast
+- Conversieprincipes consistent zijn
+- De UX geen tegenstrijdige signalen geeft
+
+Deze laag vertaalt technisch correcte data naar een commercieel sterke presentatie.
+
+---
+
+## 5.2 R150 — Content Governance
+
+R150 definieert regels voor:
+
+- Producttitelopbouw
+- Meta title (≤ 70 tekens)
+- Meta description (≤ 170 tekens)
+- ASCII-only waar vereist
+- Verboden tekens / encodingcontrole
+- Body-structuur (koppen, bullets, scanbaarheid)
+- Micro-USP en subregels
+- Geen overdreven claims
+- Geen inconsistent taalgebruik
+
+R150 is geen copywriting-suggestie.  
+R150 is een harde kwaliteitslaag.
+
+Minimale R150-successcriteria:
+
+- Geen encoding- of formattingproblemen
+- SEO-limieten worden gerespecteerd
+- Geen inconsistentie tussen titel, meta en body
+- Elke productpagina is scanbaar en logisch opgebouwd
+
+---
+
+## 5.3 R151 — Collectie-Architectuur
+
+R151 definieert:
+
+- Hoofdhubstructuur
+- Subcollecties
+- Navigatielogica
+- Interne routing
+- Geen dubbele collectieposities
+- Consistente naamgeving
+
+De homepage bevat vaste kolommen (canoniek):
+
+1. Opladen  
+2. Onderweg  
+3. Werkplek & Thuis  
+4. Accessoires  
+
+Deze structuur is niet optioneel.
+
+R151 borgt dat:
+
+- Elke productgroep logisch gepositioneerd is
+- Geen wildcard-collecties ontstaan
+- UX consistent schaalbaar blijft
+
+---
+
+## 5.4 R152 — Collection Registry (Single Source of Truth)
+
+R152 is de bindende registry voor alle collecties.
+
+Per collectie worden vaste velden vastgelegd:
+
+- collection_title_nl
+- collection_handle
+- collection_type_value
+- collection_subtype_value
+- condition_operator
+- theme_template_assigned
+- seo_title_nl
+- meta_description_nl
+- hero_image_present
+- notes_routing
+
+R152 is leidend.
+
+Templates, hubkoppelingen en routing mogen alleen via R152 worden aangepast.
+
+Minimale R152-successcriteria:
+
+- Geen collectie zonder registry entry
+- Template altijd expliciet benoemd
+- SEO titel ≤ 70 tekens
+- Meta description ≤ 170 tekens
+- Hubstructuur consistent
+
+---
+
+## 5.5 R170–R173 — UX, CRO & Theme Governance
+
+Deze regels definiëren:
+
+- Core Web Vitals als conversiehefboom
+- Trust signalering vóór scroll
+- Duidelijke informatie-hiërarchie
+- Scanbare blokken
+- Eén primaire taak per sectie
+- Sticky add-to-cart op mobiel
+- Snelle betaalopties (Shop Pay / Apple Pay / PayPal)
+- AI alleen ondersteunend (geen ruis)
+
+UX is geen design-experiment.
+Het is een conversie-engine.
+
+Minimale UX-successcriteria:
+
+- Homepage volgt 4-kolommen canon
+- Hubkaarten bevatten vaste structuur
+- Geen visuele ruis
+- Mobiel is leidend
+- Checkout friction minimaal
+
+---
+
+## 5.6 Content & UX Integriteitsregels
+
+De Content & UX Engine functioneert correct als:
+
+- Copy consistent is met propositie (R73)
+- Collectie-routing aansluit op R152
+- Pricing logisch is geïntegreerd
+- Geen conflicterende signalen bestaan tussen hubs
+- De visuele rust overeenkomt met premium-positionering
+
+Content mag nooit selectie- of pricing-logica overrulen.
+
+---
+
+
