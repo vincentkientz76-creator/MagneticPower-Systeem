@@ -507,7 +507,9 @@ De keten is commercieel gezond als:
 - importbestanden “clean” zijn (geen encoding/structuur issues)
 - GO-rate stijgt door betere upstream selectie (R70–R74)
 - REVIEW-rate beheersbaar blijft (geen bottleneck)
+
 ---
+
 # 5. Content & UX Engine (R150–R152–R170+)
 
 ## 5.1 Doel
@@ -648,7 +650,9 @@ De Content & UX Engine functioneert correct als:
 Content mag nooit selectie- of pricing-logica overrulen.
 
 ---
+
 # 6. Governance & Directielaag
+
 
 ## 6.1 Doel
 
@@ -785,7 +789,10 @@ Niet door:
 
 De Governance & Directielaag is het controlecentrum van het systeem.
 
+---
+
 # 7. Operations & Risicobeheer
+
 
 ## 7.1 Doel
 
