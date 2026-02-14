@@ -1,147 +1,82 @@
-# 00_Documentatie — Overkoepelende Documentatie van het MagneticPower Systeem
+# Documentation — Context & Uitleglaag van het MagneticPower Systeem
 
-Deze map bevat alle documentatie die het MagneticPower Systeem begrijpelijk, overdraagbaar en schaalbaar maakt.
+Deze map bevat ondersteunende documentatie rondom het MagneticPower Systeem.
 
-Deze documentatie is bedoeld voor:
+⚠️ Deze map is niet bestuurlijk leidend.  
+De bestuurlijke kern bevindt zich in /00_Documentatie/MP-ROS.
 
-- De DGA (Vincent)
-- Toekomstige medewerkers
-- AI-agents
-- Externe partners
-- Strategische samenwerkingen
-
-Documentatie is geen bijzaak.
-Het is een kernonderdeel van het systeem.
-
-Het zorgt voor:
-- rust
-- consistentie
-- reproduceerbaarheid
-- overdraagbaarheid
-- strategische controle
+MP-ROS (MagneticPower Retail Operating System) is de enige canonieke bestuurslaag.
 
 ---
 
 ## Doel van deze map
 
-Deze map vormt de intellectuele laag van het MagneticPower Systeem.
+Deze documentatie heeft als doel:
 
-Hier wordt vastgelegd:
+- Uitleggen wat het systeem is
+- Context geven aan strategische keuzes
+- Audit en historiek vastleggen
+- Het systeem overdraagbaar maken
+- Het systeem begrijpelijk maken voor de DGA
 
-- waarom het systeem bestaat
-- hoe het systeem logisch is opgebouwd
-- hoe beslissingen worden genomen
-- hoe schaalbaarheid wordt geborgd
-- hoe controle bij de DGA blijft
-
-Dit is de menselijke en strategische uitleg van het systeem.
-Niet de operationele uitvoering.
+Deze map bestuurt het systeem niet — zij beschrijft het systeem.
 
 ---
 
-## Inhoud van deze map
+## Structuur
 
-### 1. DGA-Documentatie
+### DGA_Boek/
+Niet-technische uitleg van:
+- Waarom MagneticPower bestaat
+- Strategische keuzes
+- Systeemfilosofie
+- Langetermijnvisie
 
-Uitleg in duidelijke mensentaal over:
-
-- De missie van MagneticPower
-- De strategische positionering
-- De reden achter systeemkeuzes
-- Hoe winst, controle en schaalbaarheid samenkomen
-- Hoe de DGA overzicht behoudt zonder micromanagement
-
-Dit is het bestuurlijke kompas van het systeem.
+Dit is reflectief en strategisch, niet operationeel leidend.
 
 ---
 
-### 2. Systeemdocumentatie (Architectuuruitleg)
-
-Overkoepelende uitleg van:
-
-- Architectuur van het totale systeem
-- De rol van Regels (R70–R190 enz.)
-- Pipeline-logica
-- Shopify-structuur
+### Project_Overzicht/
+Technische en organisatorische samenvatting van:
+- Architectuur
+- Pipelines
+- Regelclusters
 - UX-structuur
 - SEO-structuur
-- Content governance
+- Shopify-implementatie
 
-Deze uitleg beschrijft hoe alles samenwerkt.
-
-De daadwerkelijke implementatie bevindt zich in de respectieve mappen
-(01_Regels, 02_Pipeline, 03_Shopify, etc.).
+Dit documenteert het systeem, maar definieert geen regels.
 
 ---
 
-### 3. Governance-overzicht
+### Changelogs/
+Auditlaag van het systeem.
 
-Hier wordt uitgelegd:
+Hier worden wijzigingen vastgelegd met:
+- Datum
+- Regelreferentie
+- Omschrijving
+- Reden
 
-- Hoe besluitvorming werkt
-- Wanneer escalatie plaatsvindt
-- Hoe audits worden uitgevoerd
-- Wie waarvoor verantwoordelijk is
-- Hoe risico’s worden beheerst
-
-Let op:
-
-De operationele governance-structuur zelf bevindt zich in:
-
-- 08_System_Governance
-- 10_Supplier_Governance
-
-Deze map bevat het overzicht en de uitleg.
-Niet de uitvoerende governance-documenten.
+Dit zorgt voor herleidbaarheid en controle.
 
 ---
 
-## Belangrijk uitgangspunt
+## Relatie tot de rest van de repo
 
-Documentatie is leidend.
-Geen losse chatbesluiten.
-Geen ad-hoc notities.
-Geen afhankelijkheid van individuen.
+| Map | Functie |
+|------|---------|
+| /00_Documentatie | Bestuurlijk Operating System (Canoniek) |
+| /01_Regels | Regeldefinities |
+| /02_Pipeline | Uitvoering van regels |
+| /03_Shopify | Implementatielaag |
+| /04_Content | Contentimplementatie |
+| /05_UX | UX-uitvoering |
+| /06_SEO | SEO-uitvoering |
+| /07_Management | Operationele bewaking |
+| /08_System_Governance | Governance-structuur |
+| /09_Archief | Historische ontwikkeling |
 
-Alles moet:
-
-- herleidbaar zijn
-- reproduceerbaar zijn
-- overdraagbaar zijn
-- schaalbaar zijn
-
----
-
-## Architectuurprincipe
-
-MagneticPower wordt gebouwd als systeembedrijf.
-
-Niet als webwinkel.
-Niet als dropshipproject.
-Niet als tijdelijke inkomstenstroom.
-
-Dit betekent:
-
-- Elke keuze wordt vastgelegd.
-- Elke regel is reproduceerbaar.
-- Elke pipeline is controleerbaar.
-- Elke beslissing is te herleiden.
-
----
-
-## Eindverantwoordelijkheid
-
-De DGA behoudt altijd:
-
-- strategische controle
-- architecturale beslissingsmacht
-- governance-overzicht
-- escalatiebevoegdheid
-
-Het systeem ondersteunt de DGA.
-Het vervangt de DGA niet.
-
----
-
-**MagneticPower is gebouwd op structuur, rust en herhaalbare intelligentie.**
-
+MagneticPower is opgebouwd als een bestuurbaar systeem.  
+Het Operating System bevindt zich in /00_Documentatie.  
+Deze map ondersteunt en documenteert dat systeem.
