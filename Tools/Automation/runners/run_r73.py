@@ -5,8 +5,7 @@ import csv
 import re
 from datetime import datetime
 from typing import Dict, Tuple, List
-
-INPUT_FILE = "Data/Exports/R72/2026-02/R72_NEW_ONLY.csv"
+INPUT_FILE = "Data/Exports/R72/2026-02/R72_SHOPIFY_ANCHOR.csv"
 EXPORT_ROOT = "Data/Exports/R73"
 
 # --- Hard exclusions (governance v3.2) ---
@@ -62,6 +61,16 @@ def classify_usage_and_collection(title: str, collections: str) -> Tuple[str, st
 
 def decide(row: Dict[str, str]) -> Dict[str, str]:
     title = row.get("title", "")
+
+    ex = (row.get("exists_in_shopify") or "").strip().upper()
+    if ex == "YES":
+        out = dict(row)
+        out["r73_proposition_fit"] = "NO"
+        out["r73_exclusion_reason"] = "R72_EXISTS_IN_SHOPIFY"
+        out["r73_confidence"] = "HIGH"
+        out["r73_usage_context"] = ""
+        out["r73_collection_candidate"] = ""
+        return out
     vendor = row.get("vendor", "")
     collections = row.get("collections", "")
 

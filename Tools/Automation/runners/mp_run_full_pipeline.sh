@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+cd "$REPO_ROOT"
+
+set -euo pipefail
+
 # Canonieke full pipeline runner (R70A → R75)
 # Gebruik: Tools/Automation/runners/mp_run_full_pipeline.sh 2026-02
 # Vereist: run_r70a_latest.py, run_r70b.py, run_r71.py, run_r72.py, run_r73.py, run_r74.py, run_r75.py
@@ -22,6 +27,6 @@ python3 -m Tools.Automation.runners.run_r73 --run "$RUN_MONTH" || python3 Tools/
 python3 -m Tools.Automation.runners.run_r74 --run-month "$RUN_MONTH" || python3 Tools/Automation/runners/run_r74.py --run-month "$RUN_MONTH"
 
 # R75 (market viability / DataForSEO) — placeholder call (moet bestaan/kloppen in repo)
-python3 -m Tools.Automation.runners.run_r75 --run-month "$RUN_MONTH" || python3 Tools/Automation/runners/run_r75.py --run-month "$RUN_MONTH"
+python3 -m Tools.Automation.runners.run_r75 --run "$RUN_MONTH"
 
 echo "✅ Full pipeline R70A → R75 completed"
