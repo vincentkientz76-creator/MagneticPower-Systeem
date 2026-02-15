@@ -14,8 +14,10 @@ Output:
 """
 
 import argparse
+import os
 import csv
 from pathlib import Path
+from Tools.Automation.lib.mp_paths import get_r70a_dir
 from typing import Dict, Tuple, Optional, List
 
 OUT_HEADER = [
@@ -324,6 +326,7 @@ def run_single_input(input_csv: Path, output_csv: Path) -> Tuple[int, int]:
 
 def main():
     ap = argparse.ArgumentParser()
+
     ap.add_argument("--run", help="Run folder name under Data/Exports/R70A/<RUN>/...", default=None)
     ap.add_argument("--supplier", help="Optional: only run 1 supplier (BigBuy or Eprolo)", default=None)
     ap.add_argument("--in", dest="input_csv", help="Direct input CSV (overrides --run)", default=None)
@@ -347,7 +350,7 @@ def main():
         return 2
 
     run = args.run
-    r70a_run_dir = Path("Data/Exports/R70A") / run
+    r70a_run_dir = get_r70a_dir(os.environ.get("MP_R70A_RUN"))
     r70b_run_dir = Path("Data/Exports/R70B") / run
 
     if not r70a_run_dir.exists():

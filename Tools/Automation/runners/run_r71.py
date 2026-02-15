@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 import argparse
+import os
 import csv
 import re
 from datetime import datetime, timezone
 from pathlib import Path
 
+from Tools.Automation.lib.mp_paths import get_r70a_dir
 OUT_HEADER = [
     "sku",
     "ean",
@@ -128,6 +130,7 @@ def detect_suppliers(run_ts: str):
 
 def main():
     ap = argparse.ArgumentParser()
+
     ap.add_argument("--run", required=True)
     args = ap.parse_args()
     run_ts = args.run
@@ -139,7 +142,7 @@ def main():
 
     for supplier in suppliers:
         r70b_path = Path("Data/Exports/R70B") / run_ts / supplier / "R70B_FUNCTION_CLASSIFIED.csv"
-        r70a_path = Path("Data/Exports/R70A") / run_ts / supplier / "R70A_RAW_PRODUCTS.csv"
+        r70a_path = get_r70a_dir(os.environ.get("MP_R70A_RUN")) / supplier / "R70A_RAW_PRODUCTS.csv"
 
         out_dir = Path("Data/Exports/R71") / run_ts / supplier
         out_dir.mkdir(parents=True, exist_ok=True)

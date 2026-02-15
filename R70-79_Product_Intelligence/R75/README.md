@@ -1,15 +1,7 @@
-# R75 — Magnetic Chargers Specialist
+# R75 — DataForSEO Market Intelligence (Alias)
 
-Criteria:
+Canonieke documentatie en structuur staat hier:
 
-- Magnetisch  
-- Functie = charger  
-- Output ≥ 7.5W  
-- Compatibel met iPhone of Android  
+- `01_Regels/R75_DataForSEO_Market_Intelligence/README.md`
 
-Output:
-
-- GO  
-- REVIEW  
-- EXCLUDE  
-
+Deze map is uitsluitend een familie-entry binnen `R70-79_Product_Intelligence`.

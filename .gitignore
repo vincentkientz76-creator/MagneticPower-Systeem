@@ -24,3 +24,7 @@ Data/**
 # Automation runtime
 Tools/Automation/logs/**
 Tools/Automation/tmp/**
+
+# HOLD (review later)
+Tools/Automation/core/r72/
+01_Regels/R75_DataForSEO_Market_Intelligence/
