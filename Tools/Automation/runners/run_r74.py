@@ -51,7 +51,7 @@ def main():
 
     ready_path = EXPORT_ROOT / "R74_READY_FOR_R75.csv"
     rejected_by_r73_path = EXPORT_ROOT / "R74_REJECTED_BY_R73.csv"
-    not_evaluated_path = EXPORT_ROOT / "R74_NOT_EVALUATED_BY_R73.csv"
+    not_evaluated_path = EXPORT_ROOT / "R74_EXISTING_IN_SHOPIFY_SKIPPED.csv"
     feedback_path = EXPORT_ROOT / "R74_R70_FEEDBACK.csv"
     log_path = EXPORT_ROOT / "R74_LOG.csv"
 
@@ -109,7 +109,7 @@ def main():
                     n_rejected += 1
                 else:
                     out = dict(row)
-                    out["r74_bucket"] = "NOT_EVALUATED_BY_R73"
+                    out["r74_bucket"] = "EXISTING_IN_SHOPIFY_SKIPPED"
                     out["r73_proposition_fit"] = ""
                     out["r73_exclusion_reason"] = ""
                     out["r73_confidence"] = ""

@@ -28,3 +28,6 @@ Tools/Automation/tmp/**
 # HOLD (review later)
 Tools/Automation/core/r72/
 01_Regels/R75_DataForSEO_Market_Intelligence/
+
+# local backups
+*.bak_*
