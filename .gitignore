@@ -31,3 +31,7 @@ Tools/Automation/core/r72/
 
 # local backups
 *.bak_*
+
+# local input artifacts
+*.numbers
+.DS_Store
